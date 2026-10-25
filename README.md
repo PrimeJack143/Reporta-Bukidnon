@@ -30,4 +30,4 @@ Visit the official website to download the APK: [Insert Website Link Here]
 
 ## Author
 
-Jack Lxvivyan
+Jack Lx Vivyan
