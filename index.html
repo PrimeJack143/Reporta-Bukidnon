@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporta Bukidnon - Download</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B3D2E;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 100%;
+            gap: 40px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero-section {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        p.subtitle {
+            font-size: clamp(15px, 2.5vw, 18px);
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #D1D5DB;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #E76F51;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 18px 40px;
+            font-size: clamp(16px, 2vw, 18px);
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #F4A261;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 162, 97, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #A7F3D0;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tutorial-section {
+            background-color: #FFFFFF;
+            color: #333333;
+            padding: clamp(25px, 5vw, 45px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .tutorial-section h2 {
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 800;
+            color: #0B3D2E;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tutorial-section p.intro {
+            color: #4B5563;
+            font-size: clamp(15px, 2vw, 16px);
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            counter-reset: step-counter;
+        }
+
+        .tutorial-step {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .tutorial-step h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #E76F51;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tutorial-step h3::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            background-color: #E76F51;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .tutorial-step p {
+            font-size: 15px;
+            color: #4B5563;
+            line-height: 1.6;
+        }
+
+        .tutorial-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+            background-color: #F9FAFB;
+            object-fit: contain;
+            max-height: 500px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .warning-box {
+            background-color: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 16px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .warning-box p {
+            color: #92400E;
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .tutorial-step {
+                background-color: #F9FAFB;
+                padding: 25px;
+                border-radius: 16px;
+                border: 1px solid #F3F4F6;
+            }
+
+            .tutorial-step:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="hero-section">
+            <h1>Reporta Bukidnon</h1>
+            <p class="subtitle">Download the app and report road hazards and community issues in Bukidnon.</p>
+            
+            <a href="reportabukidnon.apk" id="downloadBtn" class="btn" download="reportabukidnon.apk">Download APK</a>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span>👁️ Visits:</span> <span id="visit-counter">0</span>
+                </div>
+                <div class="stat-box">
+                    <span>📥 Downloads:</span> <span id="download-counter">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutorial-section">
+            <h2>How to Install</h2>
+            <p class="intro">Your phone will show a warning because this app is not downloaded from the Google Play Store. This is a false alarm. The app is safe and does not contain malware.</p>
+            
+            <div class="steps-grid">
+                <div class="tutorial-step">
+                    <h3>Click More Details</h3>
+                    <p>When the "App blocked" warning appears, tap the "More details" button.</p>
+                    <img src="step1.jpg" alt="Step 1 Screenshot" class="tutorial-image">
+                </div>
+
+                <div class="tutorial-step">
+                    <h3>Click Install Anyway</h3>
+                    <p>Tap the "Install anyway" button at the bottom of the screen to proceed.</p>
+                    <img src="step2.jpg" alt="Step 2 Screenshot" class="tutorial-image">
+                    
+                    <div class="warning-box">
+                        <p>Why did this happen? Because you are installing the app outside the Google Play Store. The app is compiled using a Google Developer account. It is a false flag and will not harm your device.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const downloadBtn = document.getElementById('downloadBtn');
+        const downloadCounter = document.getElementById('download-counter');
+        
+        let downloads = localStorage.getItem('reporta_downloads');
+        if (!downloads) {
+            downloads = 0;
+        }
+        downloadCounter.innerText = downloads;
+
+        downloadBtn.addEventListener('click', function() {
+            downloads = parseInt(downloads) + 1;
+            localStorage.setItem('reporta_downloads', downloads);
+            downloadCounter.innerText = downloads;
+            
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
+        });
+
+        function updateVisitCounter() {
+            let visits = localStorage.getItem('reporta_visits');
+            if (!visits) {
+                visits = 1;
+            } else {
+                visits = parseInt(visits) + 1;
+            }
+            localStorage.setItem('reporta_visits', visits);
+            document.getElementById('visit-counter').innerText = visits;
+        }
+
+        updateVisitCounter();
+    </script>
+
+</body>
+</html>
