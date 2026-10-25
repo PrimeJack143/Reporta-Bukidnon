@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0B3D2E;
+            background: linear-gradient(135deg, #0B3D2E 0%, #1A5B43 50%, #2D6A4F 100%);
             color: #FFFFFF;
             display: flex;
             justify-content: center;
@@ -26,17 +26,24 @@
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
+            background-attachment: fixed;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
         .main-wrapper {
@@ -47,85 +54,141 @@
             gap: 40px;
             margin-top: 40px;
             margin-bottom: 40px;
-            animation: fadeInUp 0.8s ease-out forwards;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .hero-section {
             text-align: center;
+            position: relative;
+        }
+
+        .greeting {
+            font-size: 14px;
+            font-weight: 600;
+            color: #A7F3D0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
         }
 
         h1 {
-            font-size: clamp(28px, 6vw, 42px);
+            font-size: clamp(32px, 7vw, 48px);
             font-weight: 800;
             margin-bottom: 15px;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.3s;
         }
 
         p.subtitle {
             font-size: clamp(15px, 2.5vw, 18px);
             font-weight: 400;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             color: #D1D5DB;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.4s;
         }
 
         .btn {
             display: inline-block;
-            background-color: #E76F51;
+            background: linear-gradient(135deg, #E76F51 0%, #F4A261 100%);
             color: #FFFFFF;
             text-decoration: none;
-            padding: 18px 40px;
+            padding: 18px 45px;
             font-size: clamp(16px, 2vw, 18px);
-            font-weight: 600;
-            border-radius: 12px;
+            font-weight: 800;
+            border-radius: 14px;
             transition: all 0.3s ease;
             width: 100%;
             max-width: 400px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4);
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(231, 111, 81, 0.5);
             border: none;
             cursor: pointer;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
         }
 
         .btn:hover {
-            background-color: #F4A261;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(244, 162, 97, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(244, 162, 97, 0.7);
         }
 
         .btn:active {
-            transform: translateY(0);
+            transform: translateY(0) scale(0.98);
         }
 
         .stats-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.6s;
         }
 
         .stat-box {
-            background-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 12px 24px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 14px;
             font-weight: 600;
             color: #A7F3D0;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .tutorial-section {
-            background-color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.95);
             color: #333333;
             padding: clamp(25px, 5vw, 45px);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.7s;
+            position: relative;
+            overflow: hidden;
         }
 
         .tutorial-section h2 {
@@ -163,26 +226,27 @@
 
         .tutorial-step h3 {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 800;
             color: #E76F51;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .tutorial-step h3::before {
             content: counter(step-counter);
             counter-increment: step-counter;
-            background-color: #E76F51;
+            background: linear-gradient(135deg, #E76F51, #F4A261);
             color: white;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 800;
+            box-shadow: 0 4px 10px rgba(231, 111, 81, 0.3);
         }
 
         .tutorial-step p {
@@ -199,15 +263,20 @@
             background-color: #F9FAFB;
             object-fit: contain;
             max-height: 500px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .tutorial-image:hover {
+            transform: scale(1.02);
         }
 
         .warning-box {
-            background-color: #FEF3C7;
-            border-left: 4px solid #F59E0B;
-            padding: 16px;
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 5px solid #F59E0B;
+            padding: 18px;
             margin-top: 15px;
-            border-radius: 8px;
+            border-radius: 12px;
         }
 
         .warning-box p {
@@ -224,14 +293,15 @@
             }
             
             .tutorial-step {
-                background-color: #F9FAFB;
-                padding: 25px;
-                border-radius: 16px;
+                background: #F9FAFB;
+                padding: 30px;
+                border-radius: 20px;
                 border: 1px solid #F3F4F6;
             }
 
             .tutorial-step:hover {
-                transform: translateY(-5px);
+                transform: translateY(-8px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             }
         }
     </style>
@@ -240,17 +310,18 @@
 
     <div class="main-wrapper">
         <div class="hero-section">
+            <div class="greeting" id="greeting-text">Good Morning</div>
             <h1>Reporta Bukidnon</h1>
             <p class="subtitle">Download the app and report road hazards and community issues in Bukidnon.</p>
             
-            <a href="reportabukidnon.apk" id="downloadBtn" class="btn" download="https://drive.google.com/uc?export=download&id=1dc4aMviazQrrCrDCZtNzmBH-i8DPuvB">Download APK</a>
+            <a href="https://drive.google.com/uc?export=download&id=1dc4aMviazQrrCrDCZtNzmBH-i8DPuvBk" id="downloadBtn" class="btn" download="reportabukidnon.apk">Download APK</a>
             
             <div class="stats-container">
                 <div class="stat-box">
-                    <span>👁️ Visits:</span> <span id="visit-counter">0</span>
+                    <span>Visits:</span> <span id="visit-counter">0</span>
                 </div>
                 <div class="stat-box">
-                    <span>📥 Downloads:</span> <span id="download-counter">0</span>
+                    <span>Downloads:</span> <span id="download-counter">0</span>
                 </div>
             </div>
         </div>
@@ -280,6 +351,26 @@
     </div>
 
     <script>
+        function updateGreeting() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Manila', hour: 'numeric', hour12: false };
+            const formatter = new Intl.DateTimeFormat('en-US', options);
+            const hour = parseInt(formatter.format(now));
+            
+            let greeting = 'Good Evening';
+            
+            if (hour >= 5 && hour < 12) {
+                greeting = 'Good Morning';
+            } else if (hour >= 12 && hour < 18) {
+                greeting = 'Good Afternoon';
+            }
+            
+            document.getElementById('greeting-text').innerText = greeting;
+        }
+
+        updateGreeting();
+        setInterval(updateGreeting, 60000);
+
         const downloadBtn = document.getElementById('downloadBtn');
         const downloadCounter = document.getElementById('download-counter');
         
@@ -293,10 +384,6 @@
             downloads = parseInt(downloads) + 1;
             localStorage.setItem('reporta_downloads', downloads);
             downloadCounter.innerText = downloads;
-            
-            setTimeout(function() {
-                window.location.reload();
-            }, 1000);
         });
 
         function updateVisitCounter() {
